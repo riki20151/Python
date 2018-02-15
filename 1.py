@@ -1,24 +1,29 @@
-koloda = [6,7,8,9,10,2,3,4,11] * 4
-import random
-random.shuffle(koloda)
-print('Поиграем в очко?')
-count = 0
-while True:
-    choice = input('Будете брать карту? y/n\n')
-    if choice == 'y':
-        current = koloda.pop()
+def Count ( desk ):
+    random.shuffle(desk)
+    count = 0
+    while True:
+        current = desk.pop()
         print('Вам попалась карта достоинством %d' %current)
         count += current
         if count > 21:
-            print('Извините, Вы проиграли')
-            break
-        elif count == 21:
-            print('Поздравляем с победой')
-            break
-        else:
-            print(' У Вас %d очков' %count)
-            break
-    else:
-        print('Ну как хотите')
-        break
-print('До новых встреч!')
+            print('Результат %d' %count)
+            return count
+        if count == 21:
+            print('Вы выиграли')
+            return count
+
+
+MyDesk = [6,7,8,9,10,2,3,4,11,1] * 4
+import random
+random.shuffle(MyDesk)
+print("Первый игрок")
+player1 = Count(MyDesk)
+print("Второй игрок")                                     
+player2 = Count(MyDesk)
+if player1 > player2:
+    print("Второй игрок победил")
+elif player1 < player2:
+   print("Первый игрок победил")
+else:
+   print("Нечья")
+
